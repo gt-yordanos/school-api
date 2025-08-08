@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "School Management API",
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "description": "API collection for adding and listing schools",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add School",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Greenwood High\",\n  \"address\": \"456 Elm Street\",\n  \"latitude\": 9.05,\n  \"longitude\": 38.76\n}"
+        },
+        "url": {
+          "raw": "http://educase.yekakewordewtlegacy.org/addSchool",
+          "protocol": "http",
+          "host": ["educase.yekakewordewtlegacy.org"],
+          "path": ["addSchool"]
+        }
+      }
+    },
+    {
+      "name": "List Schools",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://educase.yekakewordewtlegacy.org/listSchools?latitude=9.01&longitude=38.70",
+          "protocol": "http",
+          "host": ["educase.yekakewordewtlegacy.org"],
+          "path": ["listSchools"],
+          "query": [
+            { "key": "latitude", "value": "9.01" },
+            { "key": "longitude", "value": "38.70" }
+          ]
+        }
+      }
+    }
+  ]
+}

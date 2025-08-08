@@ -28,19 +28,17 @@ const addSchoolValidation = [
 // Validation for listing schools
 const listSchoolsValidation = [
   query('latitude')
-    .exists()
+    .exists({ checkFalsy: true })
     .withMessage('Latitude query param is required')
     .isFloat({ min: -90, max: 90 })
     .withMessage('Latitude must be a number between -90 and 90'),
   query('longitude')
-    .exists()
+    .exists({ checkFalsy: true })
     .withMessage('Longitude query param is required')
     .isFloat({ min: -180, max: 180 })
     .withMessage('Longitude must be a number between -180 and 180'),
   validate,
 ];
-
-
 
 router.post('/addSchool', addSchoolValidation, schoolController.addSchool);
 router.get('/listSchools', listSchoolsValidation, schoolController.listSchools);
