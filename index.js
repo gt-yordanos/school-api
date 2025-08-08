@@ -6,6 +6,10 @@ const schoolRoutes = require('./routes/schoolRoutes');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get('/', (req, res)=>{
+  res.send("Welcome to School Educase India Management System")
+})
+
 app.use(bodyParser.json());
 app.use('/', schoolRoutes);
 
