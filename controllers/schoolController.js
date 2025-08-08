@@ -19,14 +19,7 @@ function getDistance(lat1, lon1, lat2, lon2) {
 exports.addSchool = async (req, res) => {
   const { name, address, latitude, longitude } = req.body;
 
-  if (
-    !name ||
-    !address ||
-    typeof latitude !== 'number' ||
-    typeof longitude !== 'number'
-  ) {
-    return res.status(400).json({ error: 'Invalid input. Please provide all fields correctly.' });
-  }
+  // No manual validation needed here — handled by express-validator middleware
 
   try {
     const sql = 'INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)';
@@ -39,14 +32,10 @@ exports.addSchool = async (req, res) => {
 };
 
 exports.listSchools = async (req, res) => {
-  const { latitude, longitude } = req.query;
+  const latNum = parseFloat(req.query.latitude);
+  const lonNum = parseFloat(req.query.longitude);
 
-  const latNum = parseFloat(latitude);
-  const lonNum = parseFloat(longitude);
-
-  if (isNaN(latNum) || isNaN(lonNum)) {
-    return res.status(400).json({ error: 'Please provide valid latitude and longitude as query parameters.' });
-  }
+  // No manual validation needed here — handled by express-validator middleware
 
   try {
     const [schools] = await pool.query('SELECT * FROM schools');
